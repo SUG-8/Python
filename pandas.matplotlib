@@ -1,0 +1,74 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+from matplotlib.pyplot import figure
+
+df=pd.read_csv("movies_dataset - Copy.csv")
+average_ratings=df['Average rating'].mean()
+print(f'the average is {average_ratings}')
+
+print()
+def av_rating():
+    movies=[]
+    total=0
+    for value in df['Movie title'].items():
+        item= df.loc[total]
+        ratings=item.loc['Average rating']
+        if ratings >8:
+            movies.append(item)
+        total += 1
+    print(movies)
+
+def sci_fi():
+    total=0
+    sci_fi_movies=[]
+    for value in df['Movie title'].items():
+        item = df.loc[total]
+        gen = item.loc['Genre']
+        name = item.loc['Movie title']
+        if gen == 'Sci-Fi':
+            sci_fi_movies.append(name)
+        total+=1
+    print(sci_fi_movies)
+def action():
+    total=0
+    action_movies=[]
+    for value in df['Movie title'].items():
+        item = df.loc[total]
+        gen = item.loc['Genre']
+
+        name = item.loc['Movie title']
+        if gen == 'Action':
+            action_movies.append(name)
+
+            ratings = item.loc['Average rating']
+            box_o_revenues = item.loc['Box office revenue']
+
+            action_movies.append(f"with a rating of {ratings} and box office revenue of {box_o_revenues} ")
+
+
+
+
+        total+=1
+    print(action_movies)
+
+print('')
+print('the movies with an average rating of more than 8 are')
+av_rating()
+print('')
+print('the sci-fi movies are')
+sci_fi()
+print('')
+print('the action movies are')
+action()
+box_office_revenue=['85000000','55000000','120000000','30000000','75000000']
+year=['2018','2020','2019','2021','2017',]
+width=0.5
+fig,ax=plt.subplots()
+ax.bar(box_office_revenue,year,width)
+ax.set_title('box office revenue over the years')
+ax.set_xlabel("year")
+ax.set_ylabel("box office revenue")
+plt.show()
+
+
+
