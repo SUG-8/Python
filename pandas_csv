@@ -1,0 +1,9 @@
+import pandas as pd
+df=pd.read_csv('weekly_allowance.csv')
+total=0
+for value in df['Name'].items():#iteration so it'll go through al the students
+    row_1=df.iloc[total]#will scan through each value
+    name=row_1.iloc[0]#to get out the exact nae of each student
+    sum=row_1[['Week 1','Week 2','Week 3','Week 4']].sum()#sums up the total spend for the student
+    print(f'the total spending amount for {name} is £{sum}')
+    total+=1
